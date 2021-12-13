@@ -1,0 +1,32 @@
+
+Funcionalidade: Logar no sistema
+    Sendo um usuário já cadastrado no sistema
+    Quero logar no sistema com meu email e senha
+    Para realizar as minhas compras
+
+    Cenario: Fazer login
+        Dado que acesso a pagina de login
+        Quando submeto o meu login com:
+            |email  |hulgo.ferreira@fatec.sp.gov.br|
+            |senha  |teste123                      |
+         Então devo ser redirecionado para a área logadas
+
+    Cenario: Email não informado
+        Dado que acesso a tela de login
+        Quando submeto o meu login sem o email
+        Então devo ver a mensagem: "Preencha este Campo."
+
+    Cenario: Senha não informada
+        Dado que acesso a tela de login
+        Quando submeto o meu login sem a senha
+        Então devo ver a mensagem: "Preencha este Campo."
+
+    Cenario: Senha divergente
+        Dado que acesso a tela de login
+        Quando submeto o meu login com a senha divergente
+        Então devo ver a mensagem: "E-mail e/ou senha incorretos."
+
+    Cenario: Email divergente
+        Dado que acesso a tela de login
+        Quando submeto o meu login com email divergente
+        Então devo ver a mensagem: "E-mail e/ou senha incorretos."
