@@ -6,9 +6,12 @@ Funcionalidade: Cadastro de Usuários
     Quero fazer o meu cadastro
     Para que eu possa comprar os meus produtos favoritos
 
-    @happy
+    #contexto fixo
+    Contexto: pagina de cadastro
+    Dado que acesso a página de cadastro
+    
+    #@happy
     Cenario: Cadastro
-        Dado que acesso a página de cadastro
         Quando submeto o meu cadastro com:
             #massa de teste fixa
             |nome      |Hulgo Rafael Ferreira    |
@@ -32,7 +35,6 @@ Funcionalidade: Cadastro de Usuários
     Esquema do Cenário: Tentativa de Cadastro
 
         #<>placeholder representado pela minha matriz
-        Dado Dado que acesso a página de cadastro
         Quando submeto o meu cadastro com:
             |nome       |<nome>       | 
             |cpf        |<cpf>        |
@@ -51,9 +53,9 @@ Funcionalidade: Cadastro de Usuários
         Então devo ver a mensagem: "<mensagem_saida>"
 
 #matriz de exemplos com os 4 cenários representando a massa de teste
-#a primeira linha da matriz é a coluna para montrar os placeholders
+#a primeira linha da matriz é a coluna para montar os placeholders
     Exemplos:
-    |nome  |cpf           |email                         |senha   |sexo|nascimento|celular     |cep      |endereco         |cidade  |uf|bairro       |numero|complemento|mensagem_saida     |
+    |nome|cpf           |email                         |senha   |sexo|nascimento|celular     |cep      |endereco         |cidade  |uf|bairro       |numero|complemento|mensagem_saida     |
     |Hulgo |123.243.451-08|                              |teste123|M   |30/03/1992|1499766-4250|17470-000|Rua José valentim|Duartina|SP|Vila Duartina|174   |casa       |Preencha este campo| 
     |Hulgo |123.243.451-08|hulgo.ferreira@fatec.sp.gov.br|        |M   |30/03/1992|1499766-4250|17470-000|Rua José valentim|Duartina|SP|Vila Duartina|174   |casa       |Preencha este campo|
     |      |              |                              |        |    |          |            |         |                 |        |  |             |      |           |Preencha este campo|

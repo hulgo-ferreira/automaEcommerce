@@ -7,12 +7,15 @@ Dado('que acesso a página de cadastro') do
     click_link 'Cadastrar-se'  
 
 end
-  
+
 Quando('submeto o meu cadastro com:') do |table|
     user = table.rows_hash #massa de teste guardada na variável user
 
     #irá chamar o método delorean que está no arquivo helpers que por sua vez irá chamar o método HTTParty
     delorean user[:email]
+
+    #find_fild('hulgo')
+    #expec(find('#botao')).to have_button('Cadastrar-se')
 
     find("input[name=nome]").set user[:nome]
     find("input[name=cpf]").set user[:cpf]
@@ -40,12 +43,14 @@ Então('devo ser redirecionado para a área logada') do
     #expect é um recurso do rspec
     #page é um objeto do capybara
 end
+sleep 5
 
 #massa de teste referente ao então do cenário "email não informado"
 #substituo a string por expect_message (mensagem esperada)
 Então('devo ver a mensagem: {string}') do |expect_message|
-    alert = find(".message p")
-    expect(alert.text).to eql expect_message
+    #alert = find(".message p")
+    page.has_text?('Preencha este campo.')
+    #expect(alert.text).to eql expect_message
 end
 
 Quando('acesso a página de cadastro') do
