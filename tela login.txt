@@ -1,0 +1,44 @@
+
+#language: pt
+
+Funcionalidade: Login
+	Sendo um visistante previamente cadastrado
+	Quero acessar o sistema com meu email e senha
+	Para que eu possa ter acesso as playlists do Parodify
+
+	Cenario: Login do usuário
+
+		Dado que acesso a página login
+		Quando submeto as minhas credenciais com: "ferreira.hulgo@hcosta.com.br" e "teste"
+		Então devo ser redirecionado para área logada
+	
+	Esquema do Cenário: Tentativa de Login
+
+		Dado que acesso a página login
+		Quando submeto as minhas credenciais com: "<email>" e "<senha>"
+		Então devo ver a mensagem de erro "Oops! Dados de acesso incorretos!"
+
+		Exemplos:
+		|email                       |senha   |
+		|ferreira.hulgo@hcosta.com.br|teste   |
+		|ferreira.hulgo@hcosta.com   |teste   |
+		|ferreira.hulgo@hcosta.com.br|teste123|
+
+--------------------------------------------------------------------
+Arquivo Ruby
+
+Dado("que acesso a página de login") do
+	visit "http://parodify.qaninja.com.br"
+	click_on "Login"
+end
+
+Quando("sumeto minhas credenciais com: (string) e (string)") do |email, password|
+	find("#user_email").set email
+	find("#user_password").set password
+	click_on "Login"
+end
+
+Então("devo ver a mensagem de erro: (string)") do |expect_message|
+	message = find(".mensage .message-body")
+	expect(message.text).to eql expect_message
+end
